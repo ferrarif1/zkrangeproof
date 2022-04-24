@@ -1,4 +1,4 @@
-## Zero Knowledge Range Proof
+## Zero Knowledge Range Proof[🐰🤡 !!! Use IntelliJ IDEA CE to run this. !!!🤖👽]
 
 ING's zero knowledge range-proof precompiled contract for the go-ethereum client.
 
