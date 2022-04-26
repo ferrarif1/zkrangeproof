@@ -29,7 +29,10 @@ import java.security.SecureRandom;
 
 import static com.ing.blockchain.zk.util.TimerUtil.timeAndLog;
 import static java.math.BigInteger.ONE;
-
+/*
+* 生成setup相关的一些数据，g，h，N=pq等等
+*
+* */
 public class SecretOrderGroupGenerator {
     private static final Logger LOGGER = LoggerFactory.getLogger(SecretOrderGroupGenerator.class);
     private static final BigInteger TWO = BigInteger.valueOf(2);
@@ -61,7 +64,10 @@ public class SecretOrderGroupGenerator {
 
         return new SecretOrderGroup(N, generators[0], generators[1]);
     }
-
+   /*
+   * 生成长度为bitlength的p,q
+   * 运行certainty素性测试
+   * */
 
     private static BigInteger[] generateSafePrimes(int bitlength, int certainty) {
         BigInteger P = timeAndLog("Generating safe prime 1", () -> generateSafePrime(bitlength - 1, certainty));
@@ -99,7 +105,10 @@ public class SecretOrderGroupGenerator {
         LOGGER.debug("Found safe prime after " + attempts + " attempts");
         return bigPrime;
     }
-
+    /*
+    * 生成g, h （这里写作b0, b1）
+    * h = g^alpha
+     * */
     // Find two generators of G_pq.
     // This is step 2 to 4 in the "Set-up procedure" in the paper from Fujisaki and Okamoto, page 19
     // Therefore the generators for G_pq are called b0, b1 instead of g, h
