@@ -107,7 +107,7 @@ public class SecretOrderGroupGenerator {
     }
     /*
     * 生成g, h （这里写作b0, b1）
-    * h = g^alpha
+    * b1 = b0^alpha
      * */
     // Find two generators of G_pq.
     // This is step 2 to 4 in the "Set-up procedure" in the paper from Fujisaki and Okamoto, page 19

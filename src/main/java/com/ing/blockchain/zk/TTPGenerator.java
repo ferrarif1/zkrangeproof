@@ -61,6 +61,8 @@ public class TTPGenerator {
      * In Advances in Cryptology-CRYPTO'97: 17th Annual International Cryptology Conference, Santa Barbara, California,
      * USA, August 1997. Proceedings (p. 16). Springer Berlin/Heidelberg.
      *
+     * 论文内容：P提供一个承诺（I1...It）给V，向V证明P知道解（x1...xt），使得 f（x1...xt）= 0 （mod n）
+     *
      * @param valueToHide the value to hide
      * @param key         the commitment key
      * @return the commitment value
