@@ -30,7 +30,9 @@ import java.math.BigInteger;
 import java.security.SecureRandom;
 
 import static java.math.BigInteger.ONE;
-
+/*
+* 生成秘密值的承诺 c = g^m*h^r mod N
+* */
 public class TTPGenerator {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SecretOrderGroup.class);
@@ -38,7 +40,9 @@ public class TTPGenerator {
 
     // Security parameter that determines size of key in generated commitments
     public static final int s = 552;
-
+    /*
+     * 调用下面的commit方法，生成秘密secretValue的承诺
+     * */
     public static TTPMessage generateTTPMessage(BigInteger secretValue) {
         System.out.println("Generating Secret Order Group.");
         SecretOrderGroup group = new SecretOrderGroupGenerator().generate();
@@ -61,10 +65,10 @@ public class TTPGenerator {
      * In Advances in Cryptology-CRYPTO'97: 17th Annual International Cryptology Conference, Santa Barbara, California,
      * USA, August 1997. Proceedings (p. 16). Springer Berlin/Heidelberg.
      *
-     * 论文内容：P提供一个承诺（I1...It）给V，向V证明P知道解（x1...xt），使得 f（x1...xt）= 0 （mod n）
+     * 论文内容：P提供一个承诺（I1...It）给V，向V证明P知道解（x1...xt），使得 f（x1...xt）= 0 （mod n），最后P打开承诺，V得知秘密内容
      *
-     * @param valueToHide the value to hide
-     * @param key         the commitment key
+     * @param valueToHide the value to hide = m
+     * @param key         the commitment key = r
      * @return the commitment value
      */
     public static Commitment commit(final SecretOrderGroup group, final BigInteger valueToHide, final BigInteger key) {

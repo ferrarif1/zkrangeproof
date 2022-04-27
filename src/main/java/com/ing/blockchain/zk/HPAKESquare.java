@@ -27,7 +27,7 @@ import java.security.SecureRandom;
 
 /**
  * Implementation of 'Proof that a Committed Number is a Square'
- *
+ * 证明一个承诺中的数是平方数，而不透露其根
  * This protocol is described in section 2.3 in the following paper:
  * Fabrice Boudot, Efficient Proofs that a Committed Number Lies in an Interval
  */
@@ -47,7 +47,7 @@ public class HPAKESquare {
 
         BigInteger F = g.modPow(x, N).multiply(h.modPow(r2, N)).mod(N); // F = g^x*h^r2
 
-        // Now we show that E = F^x h^r3 hides the same number as F = g^x h^r2
+        // Now we show that E = F^x h^r3 hides the same number as F = g^x h^r2 【利用HPAKEEqualityConstraint相等限制证明E，F中hide的值相等，又由于E中是x，故F中也是x】
         // From this it follows that E = g^x2 h^r1 hides the square of x:
         // E = F^x h^r3 = (g^x h^r2)^x h^r3 = g^x2 h^(r2*x +r3) = g^x2 h^(r2*x + r1 - r2*x) = g^x2 h^r1
 

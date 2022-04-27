@@ -31,7 +31,7 @@ import static java.math.BigInteger.ONE;
 
 /**
  * Implementation of 'Proof that Two Commitments Hide the Same Secret'
- *
+ * 证明承诺隐藏的值相等
  * This protocol is described in section 2.2 in the following paper:
  * Fabrice Boudot, Efficient Proofs that a Committed Number Lies in an Interval
  */
