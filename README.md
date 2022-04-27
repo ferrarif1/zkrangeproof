@@ -2,6 +2,8 @@
 
 [🐰🤡 !!! Use IntelliJ IDEA CE to run this. !!!🤖👽]
 
+[在java实现部分增加了中文注释]
+
 ING's zero knowledge range-proof precompiled contract for the go-ethereum client.
 
 ## Intro
