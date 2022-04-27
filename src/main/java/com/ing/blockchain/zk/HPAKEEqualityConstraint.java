@@ -31,7 +31,7 @@ import static java.math.BigInteger.ONE;
 
 /**
  * Implementation of 'Proof that Two Commitments Hide the Same Secret'
- * 证明承诺隐藏的值相等
+ * 证明承诺隐藏的值相等  c = g^x*h^r mod N
  * This protocol is described in section 2.2 in the following paper:
  * Fabrice Boudot, Efficient Proofs that a Committed Number Lies in an Interval
  */
@@ -44,7 +44,10 @@ public class HPAKEEqualityConstraint {
     public static final int s2 = TTPGenerator.s; // s from commitment 2
     public static final BigInteger TWO = BigInteger.valueOf(2);
     public static final BigInteger b = TWO.pow(256); // max uint in Ethereum
-
+    /*
+    * W1，W2 hide the same value x
+    *
+    * */
     public static ECProof calculateZeroKnowledgeProof(
             BigInteger N,   // large composite number whose factorization is unknown by Alice and Bob
             BigInteger g1,  // element of large order in Zn*
@@ -71,7 +74,19 @@ public class HPAKEEqualityConstraint {
 
         return new ECProof(c, D, D1, D2);
     }
-
+    /*
+    * 根据proof计算出W1，W2，验证是不是等于c
+    * W1 = g1^D h1^D1 E^-c = g1^(w + cx) h1^(n1 + c*r1) g1^(-x*c) h1^(-r1*c)
+    *                      = g1^(w + cx - xc)  h1^(n1 + c*r1-r1*c)
+    *                      = g1^w h1^n1
+    * W2 = g2^D h2^D1 E^-c = g2^(w + cx) h2^(n2 + c*r2) g1^(-x*c) h1^(-r2*c)
+    *                      = g2^(w + cx - xc)  h2^(n2 + c*r2-r2*c)
+    *                      = g2^w h2^n2
+    * c' = Hash(W1,W2) ?= ecProof.c
+    * 由于验证时g1与g2都pow了相同的D，E与F都pow了相同的-c,
+    * 如果x不相等或证明中的r1，r2与E，F中不同，
+    * 就无法约掉cx与cr
+    * */
     public static void validateZeroKnowledgeProof(BigInteger N, BigInteger g1, BigInteger g2, BigInteger h1, BigInteger h2,
                                                   BigInteger E, BigInteger F, ECProof ecProof) {
 
