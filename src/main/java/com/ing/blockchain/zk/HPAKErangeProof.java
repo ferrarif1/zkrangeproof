@@ -79,8 +79,8 @@ public class HPAKErangeProof {
         SecureRandom random = new SecureRandom();
 
         // Step 1
-        BigInteger c1 = BigIntUtil.divMod(c, g.modPow(a.subtract(ONE), N), N);
-        BigInteger c2 = BigIntUtil.divMod(g.modPow(b.add(ONE), N), c, N);
+        BigInteger c1 = BigIntUtil.divMod(c, g.modPow(a.subtract(ONE), N), N);//c1 = c /[ g^(a-1)(mod N)] (mod N)
+        BigInteger c2 = BigIntUtil.divMod(g.modPow(b.add(ONE), N), c, N);//c2 = [g^(b+1)(mod N)] / c  (mod N)
 
         // Step 2
         BigInteger rPrime = BigIntegers.createRandomInRange(ZERO, k2, random);
